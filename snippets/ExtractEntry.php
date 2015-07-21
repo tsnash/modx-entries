@@ -1,7 +1,7 @@
 <?php
 
-require 'EntriesSettings.php';
-require_once 'EntriesFunctions.php';
+require 'includes/EntriesSettings.php';
+require_once 'includes/EntriesFunctions.php';
 
 /*
 

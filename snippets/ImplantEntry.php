@@ -1,7 +1,7 @@
 <?php
 
-require 'EntriesSettings.php';
-require_once 'EntriesFunctions.php';
+require 'includes/EntriesSettings.php';
+require_once 'includes/EntriesFunctions.php';
 
 
 $tbl = isset($tbl) ? $mydb->escape($tbl) : $ENTRIES_default_table; //table to send entry to

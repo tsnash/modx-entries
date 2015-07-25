@@ -6,12 +6,12 @@ require_once 'includes/EntriesFunctions.php';
 /*
 
 how to call this snippet
-[[ExtractEntry? &tbl=`` &colWhere=`` &startEntry=`` &maxEntries=`` &order=`` &chunkType=`` &paginate=``]]
+[[ExtractEntry? &table=`` &colWhere=`` &startEntry=`` &maxEntries=`` &order=`` &chunkType=`` &paginate=``]]
 
 examples
 
-tbl - name of table you'll be selecting from
-&tbl=`table` selects from 'prefix_table' if the table prefix is 'prefix_'
+table - name of table you'll be selecting from
+&table=`table` selects from 'prefix_table' if the table prefix is 'prefix_'
 
 colWhere - where clauses to be separated by and operators
 &colWhere=`type/Blog subcat/Videos url/some-cats` changes to 
@@ -47,7 +47,7 @@ $mydb->connect();
 
 
 //set up parameter defaults
-$tbl = isset($tbl) ? $mydb->escape($tbl) : $ENTRIES_default_table; //table to retrieve entry from
+$table = isset($table) ? $mydb->escape($table) : $ENTRIES_default_table; //table to retrieve entry from
 $colWhere = isset($colWhere) ? $colWhere : ''; //MySQL WHERE command parameters
 $order = isset($order) ? $mydb->escape($order) : $ENTRIES_default_order; //MySQL ORDER BY command to use
 $startEntry = is_numeric($startEntry) ? $mydb->escape($startEntry) : '0'; //the first entry to extract
@@ -69,7 +69,7 @@ $output = '';
 
 //start query
 $qField = '*';
-$qFrom = $mydb->config['table_prefix'] . $tbl;
+$qFrom = $mydb->config['table_prefix'] . $table;
 $qWhere = '';
 
 

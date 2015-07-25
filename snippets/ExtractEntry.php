@@ -82,7 +82,7 @@ if(!empty($colWhere)) {
 		$c = explode('/',$value);
 
 		//use a condition to differentiate use of AND operator with true and RLIKE operator with false
-		$qWhere .=  (true) ? $mydb->escape($c[0]) . '="' . $mydb->escape($c[1]) . '" AND ' : $mydb->escape($c[0]) . ' RLIKE "([-a-zA-Z0-9, ]*,|^)' . $mydb->escape(seoConvert($c[1])) . '(,[-a-zA-Z0-9, ]*|$)" AND ';
+		$qWhere .=  (true) ? $mydb->escape($c[0]) . '="' . $mydb->escape($c[1]) . '" AND ' : $mydb->escape($c[0]) . ' RLIKE "([-a-zA-Z0-9, ]*,|^)' . $mydb->escape($c[1]) . '(,[-a-zA-Z0-9, ]*|$)" AND ';
 
 	}
 	$qWhere = trimAfterLoop($qWhere, 5);

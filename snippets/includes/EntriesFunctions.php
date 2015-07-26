@@ -11,6 +11,35 @@ if(!function_exists(trimAfterLoop)) {
 	}
 }
 
+if(!function_exists(parseWhereClause)) {
+    
+    function parseWhereClause($clause) {
+        
+        $output = '';
+        
+        //each delimiter can only be one character from the string specified in the settings file
+        //don't forget to escape each character with a special meaning in regular expression brackets
+        $c = preg_split('/[' . $ENTRIES_where_delimiters . ']/', $clause, -1, PREG_SPLIT_DELIM_CAPTURE);
+        
+        
+        //each delimiter should have its own case
+        switch ($c[1]) {
+            
+            case '/':
+                $output = $c[0] . '="' . $c[2] . '"';
+                break;
+            case '%':
+                $output = ' RLIKE "([-a-zA-Z0-9, ]*,|^)' . $c[2] . '(,[-a-zA-Z0-9, ]*|$)"';
+                break;
+            default:
+        }
+        
+        if(strlen($output)) $output .= ' AND '; 
+        
+        return $output;
+    }
+}
+
 if(!function_exists(parseRow)) {
 
 	function parseRow(&$row) {

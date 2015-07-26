@@ -76,16 +76,13 @@ $qWhere = '';
 //parse where command
 if(!empty($colWhere)) {
 
-	$criteria = explode(' ',$colWhere);
-	foreach($criteria as $value) {
+	$clauses = explode(' ',$colWhere);
+	foreach($clauses as $clause) {
 
-		$c = explode('/',$value);
-
-		//use a condition to differentiate use of AND operator with true and RLIKE operator with false
-		$qWhere .=  (true) ? $mydb->escape($c[0]) . '="' . $mydb->escape($c[1]) . '" AND ' : $mydb->escape($c[0]) . ' RLIKE "([-a-zA-Z0-9, ]*,|^)' . $mydb->escape($c[1]) . '(,[-a-zA-Z0-9, ]*|$)" AND ';
+		$qWhere .=  parseWhereClause($clause);
 
 	}
-	$qWhere = trimAfterLoop($qWhere, 5);
+	$qWhere = trimAfterLoop($qWhere, 5); //removes trailing string ' AND '
 
 }
  

@@ -30,7 +30,7 @@ chunkType - this determines the chunk to send retrieved entries to for formattin
 &chunkType=`Summary` sends each column from the row as a placeholder into the 'Summary' chunk
 
 paginate - determines whether to allow links for separate entry pages (true/false)
-NOTE: pages are manipulated using _POST data
+NOTE: pages are manipulated using _GET data
 &paginate=`1` will indicate to append links for changing pages
 
 */

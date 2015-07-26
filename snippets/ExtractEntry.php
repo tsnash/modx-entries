@@ -73,7 +73,7 @@ $qFrom = $mydb->config['table_prefix'] . $table;
 $qWhere = '';
 
 
-//parse where command
+//parse where clause
 if(!empty($colWhere)) {
 
 	$clauses = explode(' ',$colWhere);
@@ -86,7 +86,7 @@ if(!empty($colWhere)) {
 
 }
  
-//determine syntax of limit command
+//determine syntax of limit clause
 $qLimit = ($startEntry != '0') ?  ($startEntry . ',' . $maxEntries) : (($maxEntries != 0) ? $maxEntries : '');
 
 

@@ -4,7 +4,7 @@ require 'includes/EntriesSettings.php';
 require_once 'includes/EntriesFunctions.php';
 
 
-$tbl = isset($tbl) ? $mydb->escape($tbl) : $ENTRIES_default_table; //table to send entry to
+$table = isset($table) ? $table : $ENTRIES_default_table; //table to send entry to
 
 $mysqli = new mysqli($ENTRIES_host, $ENTRIES_implant_user, $ENTRIES_implant_pass, $ENTRIES_database);
 
@@ -19,7 +19,7 @@ $prepare = array('query' => '', 'bindTypes' => '', 'bindParams' => '');
 if ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_new) {
 
 	//initial query text
-	$queryLHS = 'INSERT INTO ' . $ENTRIES_prefix . $tbl . ' (';
+	$queryLHS = 'INSERT INTO ' . $ENTRIES_prefix . $table . ' (';
 	$queryRHS = 'VALUES (';
 
 	//get column data from POST array
@@ -42,7 +42,7 @@ if ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_new) {
 elseif ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_edit) {
 	
 	//initial query text
-	$queryLHS = 'UPDATE ' . $ENTRIES_prefix . $tbl . 'SET ';
+	$queryLHS = 'UPDATE ' . $ENTRIES_prefix . $table . 'SET ';
 	$queryRHS = 'WHERE ';
 
 	//get column data from POST array

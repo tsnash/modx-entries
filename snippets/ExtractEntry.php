@@ -74,7 +74,7 @@ $qFrom = $mydb->config['table_prefix'] . $table;
 $qWhere = '';
 
 
-//parse where clause
+//parse where clause(s)
 if(!empty($colWhere)) {
 
 	$clauses = explode(' ',$colWhere);

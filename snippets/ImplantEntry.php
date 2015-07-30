@@ -13,7 +13,7 @@ if (mysqli_connect_error()) {
             . mysqli_connect_error());
 }
 
-$prepare = array('query' => '', 'bindTypes' => '', 'bindParams' => '');
+$prepare = array('query' => '', 'bindTypes' => '', 'bindValues' => array(), 'bindParams' => array());
 
 //code to be used for preparing query for new entry
 if ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_new) {
@@ -28,13 +28,18 @@ if ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_new) {
 			$queryLHS .= $column . ', ';
 			$queryRHS .= '?, ';
 			$prepare['bindTypes'] .= $type;
-			$prepare['bindParams'] .= $_POST[$column] . ', ';
+			$prepare['bindValues'][] = $_POST[$column];
 
 		}
 	}
 
 	$prepare['query'] = trimAfterLoop($queryLHS, 2, ') ') . trimAfterLoop($queryRHS, 2, ')');
-	$prepare['bindParams'] = trimAfterLoop($prepare['bindParams'], 2)
+	
+	$prepare['bindParams'][] = &$prepare['bindTypes'];
+	foreach($prepare['bindValues'] as &$value) { 
+	    $prepare['bindParams'] = $value;
+	}
+	unset($value); //just in case
 
 }
 
@@ -54,25 +59,31 @@ elseif ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_edit) {
 			else {
 				$queryLHS .= $column . '=?, ';
 				$prepare['bindTypes'] .= $type;
-				$prepare['bindParams'] .= $_POST[$column] . ', ';
+				$prepare['bindValues'][] = $_POST[$column];
 			}
 		}
 	}
 
 	$prepare['query'] = trimAfterLoop($queryLHS, 2, ' ') . $queryRHS;
+	
 	$prepare['bindTypes'] .= $ENTRIES_columns[$ENTRIES_unique_column];
-	$prepare['bindParams'] .= $_POST[$ENTRIES_unique_column];
+	$prepare['bindValues'] .= $_POST[$ENTRIES_unique_column];
+	
+	$prepare['bindParams'][] = &$prepare['bindTypes'];
+	foreach($prepare['bindValues'] as &$value) { 
+	    $prepare['bindParams'] = $value;
+	}
+	unset($value); //just in case
 }
 
 if($stmt = $mysqli->prepare($prepare['query'])) {
 
-	$stmt->bind_param($prepare['bindTypes'],$prepare['bindParams']);
+	call_user_func_array(array($stmt, 'bind_param'), $prepare['bindParams']);
 
 	if(!$stmt->execute()) printf("Error: %s.\n", $stmt->error);
 	else echo "Database updated successfully!<br>";
 
 	$stmt->close();
-
 
 }
 

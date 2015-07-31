@@ -34,12 +34,6 @@ if ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_new) {
 	}
 
 	$prepare['query'] = trimAfterLoop($queryLHS, 2, ') ') . trimAfterLoop($queryRHS, 2, ')');
-	
-	$prepare['bindParams'][] = &$prepare['bindTypes'];
-	foreach($prepare['bindValues'] as &$value) { 
-	    $prepare['bindParams'] = $value;
-	}
-	unset($value); //just in case
 
 }
 
@@ -69,15 +63,17 @@ elseif ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_edit) {
 	$prepare['bindTypes'] .= $ENTRIES_columns[$ENTRIES_unique_column];
 	$prepare['bindValues'] .= $_POST[$ENTRIES_unique_column];
 	
+}
+
+//prepare query
+if($stmt = $mysqli->prepare($prepare['query'])) {
+	
+	//elaborate binding scheme
 	$prepare['bindParams'][] = &$prepare['bindTypes'];
 	foreach($prepare['bindValues'] as &$value) { 
 	    $prepare['bindParams'] = $value;
 	}
 	unset($value); //just in case
-}
-
-if($stmt = $mysqli->prepare($prepare['query'])) {
-
 	call_user_func_array(array($stmt, 'bind_param'), $prepare['bindParams']);
 
 	if(!$stmt->execute()) printf("Error: %s.\n", $stmt->error);

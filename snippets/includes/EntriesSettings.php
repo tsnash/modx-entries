@@ -11,16 +11,18 @@ $ENTRIES_prefix = 'data_'; //prefix of the table where data will be stored
 $ENTRIES_default_table = 'index'; //default table to be queried
 $ENTRIES_default_order = 'created DESC'; //default sorting of selected queries
 $ENTRIES_where_delimiters = ‘\/%’; //delimiters to use when parsing where clauses (see ‘parseWhereClause’ function)
-$ENTRIES_columns = array( //all columns used in the database and their types
-	'id' => 'i', 
-	'created' => 's', 
-	'updated' => 's', 
-	'year' => 'i',
-	'month' => 'i',
-	'day' => 'i',
-	'title' => 's', 
-	'author' => 's', 
-	'article' => 's'
+$ENTRIES_tables = array( //all of the tables in the database, the columns they each have and their types
+	'index' = array(
+	    'id' => 'i', 
+	    'created' => 's', 
+	    'updated' => 's', 
+	    'year' => 'i',
+	    'month' => 'i',
+	    'day' => 'i',
+	    'title' => 's', 
+	    'author' => 's', 
+	    'article' => 's'
+    )
 );
 
 //********** Form/POST Settings **********//

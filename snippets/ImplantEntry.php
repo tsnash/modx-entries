@@ -23,7 +23,7 @@ if ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_new) {
 	$queryRHS = 'VALUES (';
 
 	//get column data from POST array
-	foreach ($ENTRIES_columns as $column => $type) {
+	foreach ($ENTRIES_tables[$table] as $column => $type) {
 		if(isset($_POST[$column])) { 
 			$queryLHS .= $column . ', ';
 			$queryRHS .= '?, ';
@@ -45,7 +45,7 @@ elseif ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_edit) {
 	$queryRHS = 'WHERE ';
 
 	//get column data from POST array
-	foreach ($ENTRIES_columns as $column => $type) {
+	foreach ($ENTRIES_tables[$table] as $column => $type) {
 		if(isset($_POST[$column])) {
 			if ($column == $ENTRIES_unique_column) {
 				$queryRHS .= $column . '=?';

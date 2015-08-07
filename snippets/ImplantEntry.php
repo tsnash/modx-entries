@@ -60,7 +60,7 @@ elseif ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_edit) {
 
 	$prepare['query'] = trimAfterLoop($queryLHS, 2, ' ') . $queryRHS;
 	
-	$prepare['bindTypes'] .= $ENTRIES_columns[$ENTRIES_unique_column];
+	$prepare['bindTypes'] .= $ENTRIES_tables[$table][$ENTRIES_unique_column];
 	$prepare['bindValues'] .= $_POST[$ENTRIES_unique_column];
 	
 }

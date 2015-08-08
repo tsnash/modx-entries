@@ -65,9 +65,6 @@ if($paginate == 1 && $p > 1) {
 
 }
 
-//prepare string for holding formatted data
-$output = '';
-
 //tables to select from
 $qField = '';
 foreach($ENTRIES_tables[$table] as $column => $type) {
@@ -110,29 +107,30 @@ if( $count < 1 ) {
 }
 
 else {
+	
+	//prepare string for holding formatted data
+	$output = '';
 
 	//adds each individual row to final output string
 	while($row = $mydb->getRow($result)) {
 
 		parseRow($row);
-		$output .= 	$modx->parseChunk(, $row, '[+', '+]');
+		$output .= $modx->parseChunk(, $row, '[+', '+]');
 
 	}
-}
+	
+	if($paginate == 1) {
+	
+		//figure out url
+		$url = retrieveURL();
+	
+		//format links and add them to end of page html
+		$pStyle = (strpos($url, '?') !== false) ? '&p=' : '?p=';
+		$pages['next'] = ($startEntry - $maxEntries >= 0) ? '<a href="' . $url . $pStyle . --$p . '">' . $ENTRIES_next . '</a>' : $ENTRIES_next;
+		$pages['prev'] =  ($startEntry + $maxEntries < $total) ? '<a href="' . $url . $pStyle . ++$p . '">' . $ENTRIES_prev . '</a>' : $ENTRIES_prev;
+		$output .= $modx->parseChunk($ENTRIES_pages_chunk, $pages, '[+', '+]');
 
-
-if($paginate == 1) {
-
-	//figure out url
-	$url = retrieveURL();
-
-	$pStyle = (strpos($url, '?') !== false) ? '&p=' : '?p=';
-
-	//format links and add them to end of page html
-	$pages['next'] = ($startEntry - $maxEntries >= 0) ? '<a href="' . $url . $pStyle . --$p . '">' . $ENTRIES_next . '</a>' : $ENTRIES_next;
-	$pages['prev'] =  ($startEntry + $maxEntries < $total) ? '<a href="' . $url . $pStyle . ++$p . '">' . $ENTRIES_prev . '</a>' : $ENTRIES_prev;
-	$output .= $modx->parseChunk($ENTRIES_pages_chunk, $pages, '[+', '+]');
-
+	}
 }
 
 $mydb->disconnect();

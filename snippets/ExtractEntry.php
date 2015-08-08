@@ -68,13 +68,18 @@ if($paginate == 1 && $p > 1) {
 //prepare string for holding formatted data
 $output = '';
 
-//start query
-$qField = '*';
-$qFrom = $mydb->config['table_prefix'] . $table;
-$qWhere = '';
+//tables to select from
+$qField = '';
+foreach($ENTRIES_tables[$table] as $column => $type) {
+	$qField .= $column . ', ';
+}
+$qField = trimAfterLoop($qField, 2); //removes trailing string ', '
 
+//format from table reference
+$qFrom = $mydb->config['table_prefix'] . $table;
 
 //parse where clause(s)
+$qWhere = '';
 if(!empty($colWhere)) {
 
 	$clauses = explode(' ',$colWhere);

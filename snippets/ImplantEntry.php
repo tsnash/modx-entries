@@ -47,7 +47,7 @@ elseif ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_edit) {
 	//get column data from POST array
 	foreach ($ENTRIES_tables[$table] as $column => $type) {
 		if(isset($_POST[$column])) {
-			if ($column == $ENTRIES_unique_column) {
+			if ($column == $ENTRIES_key_columns[$table]) {
 				$queryRHS .= $column . '=?';
 			}
 			else {
@@ -60,8 +60,8 @@ elseif ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_edit) {
 
 	$prepare['query'] = trimAfterLoop($queryLHS, 2, ' ') . $queryRHS;
 	
-	$prepare['bindTypes'] .= $ENTRIES_tables[$table][$ENTRIES_unique_column];
-	$prepare['bindValues'] .= $_POST[$ENTRIES_unique_column];
+	$prepare['bindTypes'] .= $ENTRIES_tables[$table][$ENTRIES_key_columns[$table]];
+	$prepare['bindValues'] .= $_POST[$ENTRIES_key_columns[$table]];
 	
 }
 

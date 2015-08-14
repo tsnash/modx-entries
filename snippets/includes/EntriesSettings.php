@@ -26,8 +26,8 @@ $ENTRIES_tables = array( //all of the tables in the database, the columns they e
 );
 
 //********** Form/POST Settings **********//
-$ENTRIES_key_columns = array( //maintain columns that are primary or candidate keys for unique row distinction
-    'index' => array('id');
+$ENTRIES_key_columns = array( //maintain columns that are primary keys for unique row distinction
+    'index' => 'id';
 );
 $ENTRIES_implant_resource = '20'; //resource that calls ImplantEntry snippet
 $ENTRIES_implant_mode = 'implant'; //name of POST data variable that holds implant mode

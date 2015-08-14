@@ -3,7 +3,7 @@
 require 'includes/EntriesSettings.php';
 require_once 'includes/EntriesFunctions.php';
 
-$table = isset($table) ? $table : $ENTRIES_default_table; //table entry will be sent to
+$table = array_key_exists($table, $ENTRIES_tables) ? $mydb->escape($table) : $ENTRIES_default_table; //table entry will be sent to
 
 $columnValues = array();
 

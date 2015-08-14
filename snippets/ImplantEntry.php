@@ -41,7 +41,7 @@ if ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_new) {
 elseif ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_edit) {
 	
 	//initial query text
-	$queryLHS = 'UPDATE ' . $ENTRIES_prefix . $table . 'SET ';
+	$queryLHS = 'UPDATE ' . $ENTRIES_prefix . $table . ' SET ';
 	$queryRHS = 'WHERE ';
 
 	//get column data from POST array

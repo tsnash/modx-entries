@@ -48,7 +48,7 @@ $mydb->connect();
 
 
 //set up parameter defaults
-$table = isset($table) ? $mydb->escape($table) : $ENTRIES_default_table; //table to retrieve entry from
+$table = array_key_exists($table, $ENTRIES_tables) ? $mydb->escape($table) : $ENTRIES_default_table; //table to retrieve entry from
 $colWhere = isset($colWhere) ? $colWhere : ''; //MySQL WHERE command parameters
 $order = isset($order) ? $mydb->escape($order) : $ENTRIES_default_order; //MySQL ORDER BY command to use
 $startEntry = is_numeric($startEntry) ? $mydb->escape($startEntry) : '0'; //the first entry to extract

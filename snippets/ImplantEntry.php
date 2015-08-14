@@ -4,7 +4,7 @@ require 'includes/EntriesSettings.php';
 require_once 'includes/EntriesFunctions.php';
 
 
-$table = isset($table) ? $table : $ENTRIES_default_table; //table to send entry to
+$table = array_key_exists($table, $ENTRIES_tables) ? $mydb->escape($table) : $ENTRIES_default_table; //table to send entry to
 
 $mysqli = new mysqli($ENTRIES_host, $ENTRIES_implant_user, $ENTRIES_implant_pass, $ENTRIES_database);
 

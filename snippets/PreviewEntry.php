@@ -3,10 +3,11 @@
 require 'includes/EntriesSettings.php';
 require_once 'includes/EntriesFunctions.php';
 
+$table = isset($table) ? $table : $ENTRIES_default_table; //table entry will be sent to
 
 $columnValues = array();
 
-foreach ($ENTRIES_columns as $column => $type) {
+foreach ($ENTRIES_tables[$table] as $column => $type) {
 	if(isset($_POST[$column])) $columnValues[$column] = $_POST[$column];
 }
 

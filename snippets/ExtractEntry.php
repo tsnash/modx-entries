@@ -114,7 +114,7 @@ else {
 	while($row = $mydb->getRow($result)) {
 
 		parseRow($row);
-		$output .= $modx->parseChunk(, $row, '[+', '+]');
+		$output .= $modx->parseChunk(chooseChunk($chunkType, $table, $row), $row, '[+', '+]');
 
 	}
 	

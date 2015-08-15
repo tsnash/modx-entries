@@ -113,7 +113,7 @@ else {
 	//adds each individual row to final output string
 	while($row = $mydb->getRow($result)) {
 
-		parseRow($row);
+		parseRow($table, $row);
 		$output .= $modx->parseChunk(chooseChunk($chunkType, $table, $row), $row, '[+', '+]');
 
 	}

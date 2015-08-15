@@ -57,6 +57,23 @@ if(!function_exists(parseRow)) {
 	}
 }
 
+
+if(!function_exists(chooseChunk)) {
+    
+    function chooseChunk($chunkType, $table, array $row = array()) {
+        
+        $chunkName = '';
+        
+        //if you want chunks to be chosen based on a set of conditions set them up here
+        
+        $chunkName .= $chunkType; //default behavior
+        
+        return $chunkName;
+        
+    }
+    
+}
+
 if(!function_exists(retrieveURL)) {
 
 	function retrieveURL() {

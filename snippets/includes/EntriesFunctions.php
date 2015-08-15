@@ -42,16 +42,18 @@ if(!function_exists(parseWhereClause)) {
 
 if(!function_exists(parseRow)) {
 
-	function parseRow(&$row) {
+	function parseRow($table, &$row) {
 
 		//if after retrieving data from the database and you have to modify it in some way do it here
 
-		//example of formatting timestamps prior to display
-		if(isset($row['created'])) {
-			$created = strtotime($row['created']);
-			$updated = strtotime($row['updated']);
-			$row['created'] = strftime('%A %B %d, %G',$created);
-			$row['updated'] = ($created < $updated) ? '| Updated: ' . strftime('%m-%d-%Y %r %Z',$updated) : ''; 
+		if($table == $ENTRIES_default_table) {
+			//example of formatting timestamps prior to display
+			if(isset($row['created'])) {
+				$created = strtotime($row['created']);
+				$updated = strtotime($row['updated']);
+				$row['created'] = strftime('%A %B %d, %G',$created);
+				$row['updated'] = ($created < $updated) ? '| Updated: ' . strftime('%m-%d-%Y %r %Z',$updated) : ''; 
+			}
 		}
 
 	}

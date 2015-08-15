@@ -93,7 +93,6 @@ if(!empty($colWhere)) {
 $qLimit = ($startEntry != '0') ?  ($startEntry . ',' . $maxEntries) : (($maxEntries != 0) ? $maxEntries : '');
 
 
-$total = $mydb->getRecordCount($mydb->select($qField,$qFrom,$qWhere));
 $result = $mydb->select($qField,$qFrom,$qWhere,$order,$qLimit);
 
 //retrieve number of results
@@ -120,6 +119,8 @@ else {
 	}
 	
 	if($paginate == 1) {
+		
+		$total = $mydb->getRecordCount($mydb->select($qField,$qFrom,$qWhere));
 	
 		//figure out url
 		$url = retrieveURL();

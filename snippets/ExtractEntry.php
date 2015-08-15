@@ -120,6 +120,7 @@ else {
 	
 	if($paginate == 1) {
 		
+		//calculate total entries for determining what page links to allow
 		$total = $mydb->getRecordCount($mydb->select($qField,$qFrom,$qWhere));
 	
 		//figure out url

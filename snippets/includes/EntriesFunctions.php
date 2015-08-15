@@ -60,7 +60,7 @@ if(!function_exists(parseRow)) {
 
 if(!function_exists(chooseChunk)) {
     
-    function chooseChunk($chunkType, $table, array $row = array()) {
+    function chooseChunk($chunkType, $tableName, array $row = array()) {
         
         $chunkName = '';
         

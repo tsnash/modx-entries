@@ -29,7 +29,8 @@ $ENTRIES_tables = array( //all of the tables in the database, the columns they e
 $ENTRIES_key_columns = array( //maintain columns that are primary keys for unique row distinction
     'index' => 'id';
 );
-$ENTRIES_implant_resource = '20'; //resource that calls ImplantEntry snippet
+$ENTRIES_preview_resource = '18'; //id of resource that calls PreviewEntry snippet
+$ENTRIES_implant_resource = '20'; //id of resource that calls ImplantEntry snippet
 $ENTRIES_implant_mode = 'implant'; //name of POST data variable that holds implant mode
 $ENTRIES_implant_new = 'implant'; //value that should be indicated when implanting a new entry
 $ENTRIES_implant_edit = 'update'; //value that should be indicated when updating an entry

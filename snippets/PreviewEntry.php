@@ -11,7 +11,7 @@ foreach ($ENTRIES_tables[$table] as $column => $type) {
 	if(isset($_POST[$column])) $columnValues[$column] = $_POST[$column];
 }
 
-parseRow($columnValues);
+parseRow($table, $columnValues);
 $output = $modx->parseChunk(chooseChunk($ENTRIES_preview_chunk, $table, $columnValues), $columnValues, '[+', '+]');
 
 $output .= '\n<form name="entry" action="[~' . $ENTRIES_implant_resource .'~]" method="post">\n';

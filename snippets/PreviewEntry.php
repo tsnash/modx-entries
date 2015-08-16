@@ -5,7 +5,7 @@ require_once 'includes/EntriesFunctions.php';
 
 $table = (isset($table) && array_key_exists($table, $ENTRIES_tables)) ? $table : $ENTRIES_default_table; //table entry will be sent to
 
-$columnValues = formatColumns($_POST);
+$columnValues = formatColumns($table, $_POST);
 $row = array();
 
 foreach ($ENTRIES_tables[$table] as $column => $type) {

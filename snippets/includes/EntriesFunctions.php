@@ -45,9 +45,15 @@ if(!function_exists(formatColumns)) {
 	function formatColumns($table, array $arrayData = array()) {
 		
 		//if you have to set up specific columns and/or their values you can do that here
+		//you should return an array that is representative of the table structure defined in $ENTRIES_tables
+		
 		//NOTE: this can include validating and sanitizing user input data
 		
-		return $arrayData;
+		if($table == $ENTRIES_default_table) {
+    		$row = $arrayData;
+    		return $row;
+		}
+		
 	}
 	
 }

@@ -11,18 +11,19 @@ foreach ($ENTRIES_tables[$table] as $column => $type) {
 	if(isset($_POST[$column])) $columnValues[$column] = $_POST[$column];
 }
 
-parseRow($table, $columnValues);
-$output = $modx->parseChunk(chooseChunk($ENTRIES_preview_chunk, $table, $columnValues), $columnValues, '[+', '+]');
-
-$output .= '\n<form name="entry" action="[~' . $ENTRIES_implant_resource .'~]" method="post">\n';
-$output .= '<input type="hidden" name="' . $ENTRIES_implant_mode . '" value="' . $_POST[$ENTRIES_implant_mode] . '>\n';
-
+//put form together for database submission
+$form = '\n<form name="entry" action="[~' . $ENTRIES_implant_resource .'~]" method="post">\n';
+$form .= '<input type="hidden" name="' . $ENTRIES_implant_mode . '" value="' . $_POST[$ENTRIES_implant_mode] . '>\n';
 foreach ($columnValues as $column => $value) {
-	$output .= '<input type="hidden" name="' . $column . '" value="' . $value . '">\n';
+	$form .= '<input type="hidden" name="' . $column . '" value="' . $value . '">\n';
 }
+$form .= '<input type="button" onclick="history.back();" value="Back">\n';
+$form .= '<input type="submit" value="Submit">\n</form>';
 
-$output .= '<input type="button" onclick="history.back();" value="Back">\n';
-$output .= '<input type="submit" value="Submit">\n</form>';
+parseRow($table, $columnValues);
+$preview = $modx->parseChunk(chooseChunk($ENTRIES_preview_chunk, $table, $columnValues), $columnValues, '[+', '+]');
+
+$output = $preview .'\n'. $form;
 
 return $output;
 ?>

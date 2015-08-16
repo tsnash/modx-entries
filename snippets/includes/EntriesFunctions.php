@@ -40,6 +40,18 @@ if(!function_exists(parseWhereClause)) {
     }
 }
 
+if(!function_exists(formatColumns)) {
+
+	function formatColumns($table, array $arrayData = array()) {
+		
+		//if you have to set up specific columns and/or their values you can do that here
+		//NOTE: this can include validating and sanitizing user input data
+		
+		return $arrayData;
+	}
+	
+}
+
 if(!function_exists(parseRow)) {
 
 	function parseRow($table, &$row) {

@@ -49,6 +49,8 @@ if(!function_exists(formatColumns)) {
 		
 		//NOTE: this can include validating and sanitizing user input data
 		
+		//NOTE: a non-false return value indicates success
+		
 		if($table == $ENTRIES_default_table) {
     		$row = $arrayData;
     		return $row;

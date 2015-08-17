@@ -14,7 +14,7 @@ foreach ($ENTRIES_tables[$table] as $column => $type) {
 
 //put form together for database submission
 $form = '\n<form name="entry" action="[~' . $ENTRIES_implant_resource .'~]" method="post">\n';
-$form .= '<input type="hidden" name="' . $ENTRIES_implant_mode . '" value="' . $_POST[$ENTRIES_implant_mode] . '>\n';
+$form .= '<input type="hidden" name="' . $ENTRIES_implant_mode . '" value="' . $columnValues[$ENTRIES_implant_mode] . '>\n';
 foreach ($row as $column => $value) {
 	$form .= '<input type="hidden" name="' . $column . '" value="' . $value . '">\n';
 }

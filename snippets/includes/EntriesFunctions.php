@@ -52,8 +52,8 @@ if(!function_exists(formatColumns)) {
 		//NOTE: a non-false return value indicates success
 		
 		if($table == $ENTRIES_default_table) {
-    		$row = $arrayData;
-    		return $row;
+	    		$row = $arrayData;
+	    		return $row;
 		}
 		
 	}

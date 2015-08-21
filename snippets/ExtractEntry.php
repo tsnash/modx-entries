@@ -128,8 +128,8 @@ else {
 	
 		//format links and add them to end of page html
 		$pStyle = (strpos($url, '?') !== false) ? '&p=' : '?p=';
-		$pages['next'] = ($startEntry - $maxEntries >= 0) ? '<a href="' . $url . $pStyle . --$p . '">' . $ENTRIES_next . '</a>' : $ENTRIES_next;
-		$pages['prev'] =  ($startEntry + $maxEntries < $total) ? '<a href="' . $url . $pStyle . ++$p . '">' . $ENTRIES_prev . '</a>' : $ENTRIES_prev;
+		$pages['next'] = ($startEntry - $maxEntries >= 0) ? '<a href="' . $url . $pStyle . ($p - 1) . '">' . $ENTRIES_next . '</a>' : $ENTRIES_next;
+		$pages['prev'] =  ($startEntry + $maxEntries < $total) ? '<a href="' . $url . $pStyle . ($p + 1) . '">' . $ENTRIES_prev . '</a>' : $ENTRIES_prev;
 		$output .= $modx->parseChunk($ENTRIES_pages_chunk, $pages, '[+', '+]');
 
 	}

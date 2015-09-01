@@ -6,16 +6,11 @@ require_once 'includes/EntriesFunctions.php';
 $table = (isset($table) && array_key_exists($table, $ENTRIES_tables)) ? $table : $ENTRIES_default_table; //table entry will be sent to
 
 //shows preview if all is good with _POST data
-if ($formattedPost = formatColumns($table, $_POST)) {
-    $row = array();
-    
-    foreach ($ENTRIES_tables[$table] as $column => $type) {
-    	if(isset($formattedPost[$column])) $row[$column] = $formattedPost[$column];
-    }
+if ($row = formatColumns($table) && $mode = retrieveMode()) {
     
     //put form together for database submission
     $form = '\n<form name="entry" action="[~' . $ENTRIES_implant_resource .'~]" method="post">\n';
-    $form .= '<input type="hidden" name="' . $ENTRIES_implant_mode . '" value="' . $formattedPost[$ENTRIES_implant_mode] . '>\n';
+    $form .= '<input type="hidden" name="' . $ENTRIES_implant_mode . '" value="' . $mode . '>\n';
     foreach ($row as $column => $value) {
     	$form .= '<input type="hidden" name="' . $column . '" value="' . $value . '">\n';
     }

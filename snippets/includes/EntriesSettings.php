@@ -29,12 +29,11 @@ $ENTRIES_tables = array( //all of the tables in the database, the columns they e
 $ENTRIES_key_columns = array( //maintain columns that are primary keys for unique row distinction
     'index' => 'id';
 );
+$ENTRIES_post_mode = 'post'; //name of POST data variable that holds preview/implant modes
 $ENTRIES_preview_resource = '10'; //id of resource that calls PreviewEntry snippet
-$ENTRIES_preview_mode = 'post'; //name of POST data variable that holds preview mode
 $ENTRIES_preview_new = 'new'; //value that should be indicated when previewing a new entry
 $ENTRIES_preview_edit = 'edit'; //value that should be indicated when previewing edits to an entry
 $ENTRIES_implant_resource = '11'; //id of resource that calls ImplantEntry snippet
-$ENTRIES_implant_mode = 'post'; //name of POST data variable that holds implant mode
 $ENTRIES_implant_new = 'implant'; //value that should be indicated when implanting a new entry
 $ENTRIES_implant_edit = 'update'; //value that should be indicated when updating an entry
 

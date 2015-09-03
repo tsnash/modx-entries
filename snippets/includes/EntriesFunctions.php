@@ -78,6 +78,26 @@ if(!function_exists(formatColumns)) {
 	
 }
 
+if(!function_exists(retrieveMode)) {
+	
+	function retrieveMode() {
+		$mode = filter_input(INPUT_POST, $ENTRIES_post_mode, FILTER_UNSAFE_RAW);
+		
+		switch($mode) {
+			
+			case $ENTRIES_preview_new:
+			case $ENTRIES_preview_edit:
+			case $ENTRIES_implant_new:
+			case $ENTRIES_implant_edit:
+				return $mode;
+			default:
+				return false;
+		}
+		
+		
+	}
+}
+
 if(!function_exists(parseRow)) {
 
 	function parseRow($table, &$row) {

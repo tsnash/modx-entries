@@ -16,7 +16,7 @@ if (mysqli_connect_error()) {
 $prepare = array('query' => '', 'bindTypes' => '', 'bindValues' => array(), 'bindParams' => array());
 
 //code to be used for preparing query for new entry
-if ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_new) {
+if ($_POST[$ENTRIES_post_mode] == $ENTRIES_implant_new) {
 
 	//initial query text
 	$queryLHS = 'INSERT INTO ' . $ENTRIES_prefix . $table . ' (';
@@ -38,7 +38,7 @@ if ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_new) {
 }
 
 //code to be used for preparing query for edting an entry
-elseif ($_POST[$ENTRIES_implant_mode] == $ENTRIES_implant_edit) {
+elseif ($_POST[$ENTRIES_post_mode] == $ENTRIES_implant_edit) {
 	
 	//initial query text
 	$queryLHS = 'UPDATE ' . $ENTRIES_prefix . $table . ' SET ';

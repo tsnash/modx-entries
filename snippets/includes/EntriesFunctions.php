@@ -42,7 +42,7 @@ if(!function_exists(parseWhereClause)) {
 
 if(!function_exists(formatColumns)) {
 
-	function formatColumns($table, array $arrayData = array()) {
+	function formatColumns($table) {
 		
 		//if you have to set up specific columns and/or their values you can do that here
 		//you should return an array that is representative of the table structure defined in $ENTRIES_tables
@@ -52,7 +52,25 @@ if(!function_exists(formatColumns)) {
 		//NOTE: a non-false return value indicates success
 		
 		if($table == $ENTRIES_default_table) {
-	    		$row = $arrayData;
+	    		$row = filter_input_array(INPUT_POST,
+	    			'id' => FILTER_VALIDATE_INT,
+	    			'created' => FILTER_SANITIZE_STRING,
+	    			'updated' => FILTER_SANITIZE_STRING,
+	    			'year' => array('filter' => FILTER_VALIDATE_INT,
+	    					'flags' => FILTER_REQUIRE_SCALAR,
+	    					'options' => array('min_range' => 1970, 'max_range' => date('Y')),
+	    					'default' => date('Y')),
+	    			'month' => array('filter' => FILTER_VALIDATE_INT,
+	    					'flags' => FILTER_REQUIRE_SCALAR,
+	    					'options' => array('min_range' => 1, 'max_range' => date('n')),
+	    					'default' => date('n')),
+	    			'day' => array('filter' => FILTER_VALIDATE_INT,
+	    					'flags' => FILTER_REQUIRE_SCALAR,
+	    					'options' => array('min_range' => 1, 'max_range' => date('j')),
+	    					'default' => date('j')),
+	    			'title' => FILTER_SANITIZE_SPECIAL_CHARS,
+	    			'author' => FILTER_SANITIZE_SPECIAL_CHARS,
+	    			'article' => FILTER_SANITIZE_STRING);
 	    		return $row;
 		}
 		
